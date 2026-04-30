@@ -169,9 +169,9 @@ function decodeTokensForDisplay(
 function buildUnicodeToBytes(): Map<string, number> {
 	// Replicate the GPT-2 bytes_to_unicode() function
 	const bs: number[] = [];
-	for (let i = 33; i <= 126; i++) bs.push(i);   // ! to ~
-	for (let i = 161; i <= 172; i++) bs.push(i);  // ¡ to ¬
-	for (let i = 174; i <= 255; i++) bs.push(i);  // ® to ÿ
+	for (let i = 33; i <= 126; i++) bs.push(i); // ! to ~
+	for (let i = 161; i <= 172; i++) bs.push(i); // ¡ to ¬
+	for (let i = 174; i <= 255; i++) bs.push(i); // ® to ÿ
 	const cs = [...bs];
 	let n = 0;
 	for (let b = 0; b < 256; b++) {
@@ -195,9 +195,11 @@ function getUnicodeToBytes(): Map<string, number> {
 
 /**
  * Convert a GPT-2 BPE token string (byte-to-unicode encoded) back to readable text.
- * - If the bytes decode to valid UTF-8, returns the UTF-8 string (e.g. "的").
- * - If the bytes are a partial / invalid UTF-8 sequence, returns a hex notation
- *   (e.g. "‹0xE7›") so users see a clear indication instead of mojibake Latin chars.
+ * - If the bytes form a complete UTF-8 sequence, returns that string (e.g. "的").
+ * - If the bytes are a partial UTF-8 sequence (e.g. the first 1-2 bytes of a
+ *   3-byte CJK character), pad with minimum continuation bytes (0x80) to complete
+ *   the sequence and return the nearest decodable Unicode character.
+ *   This ensures the probability bars always show real Unicode characters.
  */
 function bpeTokenToReadable(bpeStr: string): string {
 	const u2b = getUnicodeToBytes();
@@ -207,11 +209,25 @@ function bpeTokenToReadable(bpeStr: string): string {
 		if (byte === undefined) return bpeStr; // shouldn't happen for GPT-2 vocab
 		bytes.push(byte);
 	}
+	// Try exact decode first
 	try {
 		return new TextDecoder('utf-8', { fatal: true }).decode(new Uint8Array(bytes));
 	} catch {
-		// Partial or invalid UTF-8 — show hex so it's clear these are raw bytes
-		return bytes.map((b) => `0x${b.toString(16).toUpperCase().padStart(2, '0')}`).join('·');
+		// Incomplete UTF-8 sequence: locate the last leading byte and pad with
+		// minimum continuation bytes (0x80) to complete it.
+		const padded = [...bytes];
+		let leadPos = bytes.length - 1;
+		while (leadPos > 0 && (bytes[leadPos] & 0xc0) === 0x80) leadPos--;
+		const lead = bytes[leadPos];
+		const seqLen =
+			(lead & 0xf8) === 0xf0 ? 4 : (lead & 0xf0) === 0xe0 ? 3 : (lead & 0xe0) === 0xc0 ? 2 : 1;
+		const need = leadPos + seqLen - bytes.length;
+		for (let i = 0; i < need; i++) padded.push(0x80);
+		try {
+			return new TextDecoder('utf-8', { fatal: true }).decode(new Uint8Array(padded));
+		} catch {
+			return '？'; // ultimate fallback, should not be reached for valid GPT-2 vocab
+		}
 	}
 }
 
