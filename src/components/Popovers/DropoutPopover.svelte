@@ -19,7 +19,7 @@
 	goTo="article-dropout"
 >
 	<div class="dropout-content">
-		Disables randomly selected neurons. Used only during training.
+		随机失活部分神经元，仅在训练阶段启用。
 	</div></CommonPopover
 >
 

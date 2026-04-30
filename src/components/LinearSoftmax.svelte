@@ -235,7 +235,7 @@
 					>
 						<span>{item.token.trim() === '' ? '\u00A0' : item.token}</span>
 						<Tooltip class="softmax-tooltip" type="light">
-							Token ID: <span class="number">{tokenIds[idx]}</span>
+							Token 编号：<span class="number">{tokenIds[idx]}</span>
 						</Tooltip>
 					</div>
 				{/each}
@@ -247,7 +247,7 @@
 			{#if isSoftmaxExpanded}
 				<div class="softmax-subtitle softmax-detail flex text-center text-xs opacity-0">
 					<div class="title-box token-string !justify-end">
-						<div class="title-text">Tokens</div>
+						<div class="title-text">Tokens（token）</div>
 					</div>
 					<div class="title-box logits">
 						<div
@@ -260,7 +260,7 @@
 					</div>
 					<div class="title-box scaled">
 						<TextbookTooltip id="temperature"
-							><div class="title-text">Scaled logits</div></TextbookTooltip
+							><div class="title-text">缩放后的 logits</div></TextbookTooltip
 						>
 					</div>
 					<div class="title-box sampling">

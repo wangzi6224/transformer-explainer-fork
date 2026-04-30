@@ -304,7 +304,7 @@
 	};
 </script>
 
-<WeightPopoverCard id="mlp-down" title={'MLP Compression'} bind:isAnimationActive {timeline}>
+<WeightPopoverCard id="mlp-down" title={'MLP 压缩'} bind:isAnimationActive {timeline}>
 	<div class="mlp-weight-popover weight-popover-content flex items-center justify-start">
 		<div class="matrix flex flex-col items-center">
 			<div class="tokens" style={`gap:${tokenGap}px`}>
@@ -315,8 +315,8 @@
 		</div>
 		<div class="matrix flex flex-col items-center">
 			<div class="title flex items-center gap-1">
-				Expanded Embeddings <HelpPopover id="mlp-down-emgeddings" 
-					>{`Expanded latent vectors through MLP expansion layer.`}</HelpPopover
+				扩展后的 Embeddings <HelpPopover id="mlp-down-emgeddings" 
+					>{`由 MLP 扩展层得到的高维表示。`}</HelpPopover
 				>
 			</div>
 			<div class="flex">
@@ -339,8 +339,8 @@
 		</div>
 		<div class="matrix flex flex-col items-center">
 			<div class="title flex items-center gap-1">
-				Compression Weights <HelpPopover id="mlp-down-weights" 
-					>{`Projects expanded latent vectors back to original space. \nParameters that learned in training, fixed in prediction.`}</HelpPopover
+				压缩权重（Compression Weights） <HelpPopover id="mlp-down-weights" 
+					>{`将扩展后的表示映射回原始空间。\n参数来自训练，在推理时固定。`}</HelpPopover
 				>
 			</div>
 			<div class="flex gap-0">
@@ -362,8 +362,8 @@
 		<div class="operator"><div class="symbol plus px-3">+</div></div>
 		<div class="matrix flex flex-col items-center">
 			<div class="title flex items-center gap-1">
-				Compression Bias <HelpPopover id="mlp-down-bias" 
-					>{`Offsets added after compression. \nParameters that learned in training, fixed in prediction.`}</HelpPopover
+				压缩偏置（Compression Bias） <HelpPopover id="mlp-down-bias" 
+					>{`压缩后加上的偏置项。\n参数来自训练，在推理时固定。`}</HelpPopover
 				>
 			</div>
 			<Matrix
@@ -383,7 +383,7 @@
 			<div class="symbol equal px-4">=</div>
 		</div>
 		<div class="matrix flex flex-col items-center">
-			<div class="title">Compressed <br />Embeddings</div>
+			<div class="title">压缩后的<br />Embeddings</div>
 			<div class="flex">
 				<Matrix
 					className="mlp-down-out"

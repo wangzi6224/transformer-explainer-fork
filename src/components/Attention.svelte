@@ -54,7 +54,7 @@
 		data-click="attention-step-title"
 	>
 		<div class="w-max">
-			<TextbookTooltip id="self-attention">Multi-head Self Attention</TextbookTooltip>
+			<TextbookTooltip id="self-attention">Multi-head Self Attention（多头自注意力）</TextbookTooltip>
 		</div>
 	</div>
 	<div class="content relative">
@@ -71,7 +71,7 @@
 				>
 					<div class="qkv flex h-full flex-col justify-center gap-[5rem] pl-[6rem]">
 						<div class="column key">
-							<div class="head1 title"><TextbookTooltip id="qkv">Key</TextbookTooltip></div>
+							<div class="head1 title"><TextbookTooltip id="qkv">Key（键）</TextbookTooltip></div>
 
 							{#each $tokens as token, index}
 								<div
@@ -89,7 +89,7 @@
 							>
 						</div>
 						<div class="column query">
-							<div class="head1 title"><TextbookTooltip id="qkv">Query</TextbookTooltip></div>
+							<div class="head1 title"><TextbookTooltip id="qkv">Query（查询）</TextbookTooltip></div>
 							{#each $tokens as token, index}
 								<div
 									class="head1 cell x1-12 query text-xs"
@@ -109,7 +109,7 @@
 							>
 						</div>
 						<div class="column value">
-							<div class="head1 title"><TextbookTooltip id="qkv">Value</TextbookTooltip></div>
+							<div class="head1 title"><TextbookTooltip id="qkv">Value（值）</TextbookTooltip></div>
 							{#each $tokens as token, index}
 								<div class="head1 cell x1-12 text-xs" class:last={index === $tokens.length - 1}>
 									<span class="label float">{token}</span>
@@ -131,7 +131,7 @@
 					<div class="head-out mx-[2rem]">
 						<div class="column out">
 							<div class="head1 title">
-								<TextbookTooltip id="output-concatenation">Out</TextbookTooltip>
+								<TextbookTooltip id="output-concatenation">Out（输出）</TextbookTooltip>
 							</div>
 							{#each $tokens as token, index}
 								<div class="head1 cell x1-12" class:last={index === $tokens.length - 1}>

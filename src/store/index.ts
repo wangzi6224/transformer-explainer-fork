@@ -115,7 +115,7 @@ export const isMobile = readable(false, (set) => {
 		const userAgent = navigator.userAgent.toLowerCase();
 		set(/android|iphone|ipad|ipod/i.test(userAgent));
 	}
-	return () => {}; // Cleanup function
+	return () => { }; // Cleanup function
 });
 
 // User identification

@@ -63,7 +63,7 @@
 					})}
 				data-click={`read-more-btn-${className}`}
 			>
-				Read more
+				阅读更多
 			</div>
 		{/if}
 	</div></Popover
