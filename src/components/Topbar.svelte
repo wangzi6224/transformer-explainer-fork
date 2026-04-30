@@ -100,7 +100,7 @@
 		.logo {
 			flex-shrink: 0;
 			white-space: nowrap;
-			font-family: 'Jersey 10', sans-serif;
+			font-family: 'Jersey 10', var(--font-sans-cjk);
 
 			font-optical-sizing: auto;
 			font-style: normal;

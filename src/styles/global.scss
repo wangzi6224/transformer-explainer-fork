@@ -14,6 +14,20 @@ button {
 }
 :root {
 	font-size: 17px;
+	--font-sans-cjk: Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB',
+		'Noto Sans SC', 'Noto Sans CJK SC', 'Source Han Sans SC', 'Microsoft YaHei', sans-serif;
+	--font-mono-cjk: 'SFMono-Regular', 'SF Mono', Menlo, Consolas, Monaco, 'PingFang SC',
+		'Noto Sans SC', 'Noto Sans Mono CJK SC', 'Source Han Mono SC', monospace;
+	--font-serif-cjk: 'Source Han Serif SC', 'Songti SC', 'Noto Serif CJK SC', Georgia, serif;
+}
+
+html,
+body {
+	font-family: var(--font-sans-cjk);
+}
+
+svg text {
+	font-family: var(--font-mono-cjk);
 }
 
 @media (min-width: 2560px) {

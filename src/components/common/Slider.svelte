@@ -74,7 +74,7 @@
 			flex-shrink: 0;
 			font-size: 0.9rem;
 			line-height: 0;
-			font-family: monospace;
+			font-family: var(--font-mono-cjk);
 			color: theme('colors.gray.800');
 			margin-left: 0.5rem;
 		}

@@ -369,7 +369,7 @@
 				text-align: left;
 				font-size: 0.7rem;
 				color: theme('colors.gray.600');
-				font-family: monospace;
+				font-family: var(--font-mono-cjk);
 			}
 
 			.token-embedding {

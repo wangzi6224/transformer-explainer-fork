@@ -316,7 +316,7 @@
 			}
 		}
 		.number {
-			font-family: monospace;
+			font-family: var(--font-mono-cjk);
 		}
 		.filtered {
 			background-color: theme('colors.purple.100');

@@ -308,7 +308,7 @@
 <style lang="scss">
 	:global(.cell-text) {
 		font-size: 0.6rem;
-		font-family: monospace;
+		font-family: var(--font-mono-cjk);
 		text-anchor: middle;
 	}
 
@@ -327,7 +327,7 @@
 		padding: 0.5rem;
 		pointer-events: none;
 		transform: translate(-50%, -100%);
-		font-family: monospace;
+		font-family: var(--font-mono-cjk);
 		border-radius: 3px;
 
 		.arrow {

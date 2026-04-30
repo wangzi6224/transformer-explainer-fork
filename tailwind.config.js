@@ -16,7 +16,40 @@ export default {
 				sm: '',
 				xs: ''
 			},
-			fontSize: {},
+				fontSize: {},
+				fontFamily: {
+					sans: [
+						'Inter',
+						'-apple-system',
+						'BlinkMacSystemFont',
+						'PingFang SC',
+						'Hiragino Sans GB',
+						'Noto Sans SC',
+						'Noto Sans CJK SC',
+						'Source Han Sans SC',
+						'Microsoft YaHei',
+						'sans-serif'
+					],
+					mono: [
+						'SFMono-Regular',
+						'SF Mono',
+						'Menlo',
+						'Consolas',
+						'Monaco',
+						'PingFang SC',
+						'Noto Sans SC',
+						'Noto Sans Mono CJK SC',
+						'Source Han Mono SC',
+						'monospace'
+					],
+					serif: [
+						'Source Han Serif SC',
+						'Songti SC',
+						'Noto Serif CJK SC',
+						'Georgia',
+						'serif'
+					]
+				},
 			colors: {
 				cyan: {
 					50: '#ecfeff',

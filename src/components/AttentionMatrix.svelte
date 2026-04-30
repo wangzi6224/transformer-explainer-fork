@@ -589,7 +589,7 @@
 		}
 		.val {
 			flex-shrink: 0;
-			font-family: monospace;
+			font-family: var(--font-mono-cjk);
 			font-size: 0.7rem;
 			color: theme('colors.gray.600');
 		}

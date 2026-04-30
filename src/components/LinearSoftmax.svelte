@@ -448,7 +448,7 @@
 				gap: var(--softmax-row-gap);
 
 				span.number {
-					font-family: monospace;
+					font-family: var(--font-mono-cjk);
 					font-size: 0.8rem;
 				}
 
@@ -500,7 +500,7 @@
 							transform: translate(0, 50%);
 							font-size: 0.9rem;
 							font-weight: 600;
-							font-family: serif;
+							font-family: var(--font-serif-cjk);
 							line-height: 1;
 							background-color: theme('colors.gray.50');
 						}
