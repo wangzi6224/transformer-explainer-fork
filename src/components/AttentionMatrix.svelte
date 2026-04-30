@@ -2,6 +2,7 @@
 	import {
 		expandedBlock,
 		tokens,
+		tokenSlices,
 		modelData,
 		rootRem,
 		attentionHeadIdx,
@@ -32,15 +33,29 @@
 	$: placeHolderData = Array($tokens.length)
 		.fill(0)
 		.map((col) => Array($tokens.length).fill(-Infinity));
-	$: queryKey =
+
+	// Filter a full attention matrix (indexed by all byte tokens) down to only the
+	// rows/columns that correspond to visible display tokens (first byte of each char).
+	function filterToVisible(matrix: number[][], indices: number[]): number[][] {
+		if (!matrix || matrix.length === 0) return matrix;
+		// Identity case: no byte-splitting occurred
+		if (indices.length === matrix.length) return matrix;
+		return indices.map((row) => indices.map((col) => matrix[row]?.[col] ?? -Infinity));
+	}
+
+	$: rawQueryKey =
 		$modelData?.outputs?.[`block_${$blockIdx}_attn_head_${$attentionHeadIdx}_attn`]?.data ||
 		placeHolderData;
-	$: masked =
+	$: rawMasked =
 		$modelData?.outputs?.[`block_${$blockIdx}_attn_head_${$attentionHeadIdx}_attn_masked`]?.data ||
 		placeHolderData;
-	$: softmaxed =
+	$: rawSoftmaxed =
 		$modelData?.outputs?.[`block_${$blockIdx}_attn_head_${$attentionHeadIdx}_attn_dropout`]?.data ||
 		placeHolderData;
+
+	$: queryKey = filterToVisible(rawQueryKey, $tokenSlices);
+	$: masked = filterToVisible(rawMasked, $tokenSlices);
+	$: softmaxed = filterToVisible(rawSoftmaxed, $tokenSlices);
 
 	let factor = 1; //todo
 	let maxCellSize = 20 * factor;

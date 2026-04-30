@@ -45,6 +45,10 @@ export const modelData = writable<ModelData>(ex0);
 export const predictedToken = writable<Probability>();
 export const tokens = writable<string[]>(ex0?.tokens);
 export const tokenIds = writable<number[]>(ex0?.tokenIds);
+// Mapping: display-token index → index of its first byte in tokenIds array.
+// For ASCII/English tokens this is identity [0, 1, 2, ...].
+// For multi-byte Chinese chars this skips continuation byte positions.
+export const tokenSlices = writable<number[]>(ex0?.tokenIds.map((_: number, i: number) => i));
 
 export const modelMetaMap: Record<string, ModelMetaData> = {
 	gpt2: { layer_num: 12, attention_head_num: 12, dimension: 768, chunkTotal: 63 },
@@ -115,7 +119,7 @@ export const isMobile = readable(false, (set) => {
 		const userAgent = navigator.userAgent.toLowerCase();
 		set(/android|iphone|ipad|ipod/i.test(userAgent));
 	}
-	return () => { }; // Cleanup function
+	return () => {}; // Cleanup function
 });
 
 // User identification
