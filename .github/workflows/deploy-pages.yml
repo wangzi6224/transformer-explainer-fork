@@ -33,8 +33,29 @@ jobs:
         run: npm install
 
       - name: Normalize import casing for Linux
+        shell: bash
         run: |
-          grep -RIl "\./popovers/" src | xargs -r sed -i "s#\./popovers/#./Popovers/#g"
+          python - <<'PY'
+          from pathlib import Path
+
+          changed = []
+          for path in Path('src').rglob('*'):
+              if path.suffix not in {'.svelte', '.ts', '.js'}:
+                  continue
+
+              content = path.read_text()
+              fixed = content.replace('./popovers/', './Popovers/')
+              if fixed != content:
+                  path.write_text(fixed)
+                  changed.append(str(path))
+
+          if changed:
+              print('Normalized import casing in:')
+              for item in changed:
+                  print(f'- {item}')
+          else:
+              print('No lowercase popovers imports found.')
+          PY
 
       - name: Build
         run: npm run build
