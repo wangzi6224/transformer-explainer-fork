@@ -32,6 +32,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Normalize import casing for Linux
+        run: |
+          grep -RIl "\./popovers/" src | xargs -r sed -i "s#\./popovers/#./Popovers/#g"
+
       - name: Build
         run: npm run build
 
