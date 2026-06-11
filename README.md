@@ -28,6 +28,30 @@
 - 希望用中文材料讲解 Transformer 原理的老师、博主或技术分享者
 - 想通过可视化方式观察模型内部计算流程的开发者
 
+## ❗️网络与加载说明（大陆小伙伴注意）
+
+这个项目没有后端服务，完整推理流程都发生在浏览器中。首次打开在线预览时，浏览器大致会经历下面的加载链路：
+
+```text
+用户打开 GitHub Pages
+  ↓
+加载 JS/CSS 静态资源
+  ↓
+从 Hugging Face / Xenova 加载 tokenizer
+  ↓
+从 GitHub Pages 的 /model-v2/ 路径下载 63 个 ONNX 模型分片
+  ↓
+浏览器将模型分片合并为 Blob
+  ↓
+onnxruntime-web 从 jsDelivr 加载 WebAssembly runtime
+  ↓
+创建 InferenceSession
+  ↓
+在浏览器本地运行 GPT-2 推理
+```
+
+因此，除了项目本身托管在 GitHub Pages 上，运行过程中还会依赖 Hugging Face / Xenova、jsDelivr，以及部分 Google 字体服务。国内网络环境下（你懂的因素），这些资源可能会出现加载较慢、加载失败或字体回退的情况。中文用户如果遇到页面长时间停留在加载状态、tokenizer 下载失败、模型分片下载失败、wasm runtime 加载失败等问题，可以根据自己的网络环境酌情使用合适的网络访问方式后再重试。
+
 ## 本地运行
 
 ### 环境要求
