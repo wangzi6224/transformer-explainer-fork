@@ -1,8 +1,8 @@
 # Transformer Explainer 中文版
 
-这是我基于 [poloclub/transformer-explainer](https://github.com/poloclub/transformer-explainer) fork 的中文汉化版本，仓库地址为：
+这是我基于 [poloclub/transformer-explainer](https://github.com/poloclub/transformer-explainer) fork 的中文汉化版本
 
-https://github.com/wangzi6224/transformer-explainer-fork
+**预览地址**：[https://wangzi6224.github.io/transformer-explainer-fork/](https://wangzi6224.github.io/transformer-explainer-fork/)
 
 原项目是一个用于学习文本生成模型的交互式可视化工具。它可以在浏览器中运行 GPT-2 模型，并把 Transformer 在预测下一个 token 时涉及的关键步骤以可视化方式展示出来，包括 tokenization、embedding、attention、MLP、logits、概率分布等过程。
 
