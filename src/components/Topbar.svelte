@@ -62,7 +62,7 @@
 		</a>
 		<!-- repo -->
 		<a
-			href="https://github.com/poloclub/transformer-explainer"
+			href="https://github.com/wangzi6224/transformer-explainer-fork"
 			target="_blank"
 			data-click="github_btn"
 		>
